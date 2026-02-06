@@ -12,10 +12,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# Load credentials from environment variables
+# In Render, set these in the Environment Variables section
+APP_ID = os.environ.get("APP_ID")
+SERVER_SECRET = os.environ.get("SERVER_SECRET")
 
-# REPLACE THESE WITH YOUR ZEGO CLOUD CREDENTIALS
-APP_ID = 1481566233
-SERVER_SECRET = "fbda77fa6dd5cc2b978c9df7738a861a"
+if not APP_ID or not SERVER_SECRET:
+    print("Warning: APP_ID or SERVER_SECRET not set in environment variables.")
 
 @app.get("/token")
 def get_token(userID: str, roomID: str):
