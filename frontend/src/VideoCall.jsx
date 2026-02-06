@@ -9,7 +9,16 @@ export default function VideoCall({ roomID, userID, userName, appID, token }) {
       // Fetch token from production backend
       const response = await fetch(`https://video-calling-mockapp-2.onrender.com/token?userID=${userID}&roomID=${roomID}`);
       const data = await response.json();
-      const kitToken = data.token;
+      const serverToken = data.token;
+
+      // Generate Kit Token (Production mode)
+      const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
+        appID,
+        serverToken,
+        roomID,
+        userID,
+        userName
+      );
 
       // Create instance object from Kit Token.
       const zp = ZegoUIKitPrebuilt.create(kitToken);
