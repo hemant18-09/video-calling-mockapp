@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from dotenv import load_dotenv
+
+load_dotenv() # Load variables from .env file (for local dev)
 from zego_token import generate_token04
 
 app = FastAPI()
