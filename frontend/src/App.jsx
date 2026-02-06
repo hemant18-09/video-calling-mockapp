@@ -16,7 +16,7 @@ function App() {
 
     // Fetch token from backend
     try {
-      const response = await fetch(`http://localhost:8000/token?userID=${userName}&roomID=${roomID}`);
+      const response = await fetch(`https://video-calling-mockapp-2.onrender.com/token?userID=${userName}&roomID=${roomID}`);
       const data = await response.json();
       if (data.token) {
         setToken(data.token);
